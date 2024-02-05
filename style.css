@@ -56,7 +56,7 @@ h1{
 
 }
 
-li { 
+#links{ 
     display: inline; 
     padding: 20px; 
     font-family: 'Josefin Sans', sans-serif;
@@ -141,4 +141,34 @@ button.add-to-cart {
     cursor: pointer;
     font-family: 'Josefin Sans';
     font-style: italic;
+}
+
+#checkout{
+    background-color: #FFFFFF;
+    width: 157px;
+    height: 52px;
+    margin: 10px;
+    cursor: pointer;
+    font-family: 'Josefin Sans';
+    font-style: italic;
+}
+
+footer{
+    background-color: #0077B6;
+    font-size: large;
+    display: flex;
+    flex-direction: row; 
+    
+}
+li{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    color: #FFFFFF;
+    text-decoration: none;
+    
+}
+#info,#service{
+    color: #FFFFFF;
+    font-size: 20px;
 }
