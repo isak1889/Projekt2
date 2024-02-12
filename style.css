@@ -43,6 +43,11 @@ nav img{
     top: 0px;
     line-height: 100px;
 }
+
+li a, li b{
+    text-decoration: none;
+    color: #FFFFFF;
+}
 h1{
     color: #FFFFFF;
     font-family: 'Inter', sans-serif;
@@ -126,6 +131,12 @@ aside img{
     flex-direction: row;
     background-color: #FFFFFF;
 }
+#cart-items li{
+    font-family: 'Josefin Sans';
+    font-style: italic;
+    color:black;
+    
+}
 h4{
     font-family: 'Josefin Sans';
     font-style: italic;
@@ -133,7 +144,7 @@ h4{
     background-color: #FFFFFF;
 }
 
-button.add-to-cart {
+button{
     background-color: #FFFFFF;
     width: 157px;
     height: 52px;
