@@ -22,8 +22,6 @@ article {
     margin: 10px;
     background-color: #FFFFFF;
     border: 2px solid black;
-    
-    
 }
 
 article > img{
@@ -67,12 +65,12 @@ h1{
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
     font-size: 20px;
-    line-height: 60px;
+    /* line-height: 60px; */
     color:#FFFFFF;
-    width: 588px;
+    /* width: 588px;
     height: 90px;
     left: 1028px;
-    top: 32px;
+    top: 32px; */
 
 } 
 section{
@@ -135,13 +133,20 @@ aside img{
     font-family: 'Josefin Sans';
     font-style: italic;
     color:black;
-    
+
 }
 h4{
     font-family: 'Josefin Sans';
     font-style: italic;
     font-size: 20px;
     background-color: #FFFFFF;
+}
+
+#total{
+    font-family: 'Josefin Sans';
+    font-style: italic;
+    font-size: 20px;
+    color: black;
 }
 
 button{
@@ -182,4 +187,45 @@ li{
 #info,#service{
     color: #FFFFFF;
     font-size: 20px;
+}
+
+@media screen and (min-width:641px) and (max-width:1007px) { 
+    header{
+        background-color: #0077B6;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header ul{
+        font-size: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
+    }
+    main{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-row: 1fr 1fr 1fr 1fr;
+    }
+
+    article{
+        padding: 0px;
+        margin: 10px;
+        background-color: #FFFFFF;
+        border: 2px solid black;
+        
+    }
+
+    aside{
+        grid-column: 1/2;
+        grid-row:4;
+        border: 2px solid black;
+        border-radius: 5px;
+        margin: 10px;
+        
+    }
+
 }

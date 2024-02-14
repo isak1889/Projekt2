@@ -5,7 +5,7 @@ function add_to_cart(namn, pris){
     console.log("namn: " + namn + "\npris: " + pris)
     let li = document.createElement("li");
     li.textContent= namn + " Pris: " + pris + "kr";
-    let removeBtn = document.createElement("button");
+    let removeBtn = document.createElement("button");   
     removeBtn.textContent = "Ta bort";
     removeBtn.addEventListener("click", function() {
         remove_from_cart(li);
@@ -27,6 +27,7 @@ function add_to_cart(namn, pris){
     fält.push(obj);
     json = JSON.stringify(fält);
     window.localStorage.setItem("product",json);
+    
 }
 
 function remove_from_cart(li) {
@@ -46,3 +47,4 @@ function remove_from_cart(li) {
         window.localStorage.setItem("product", json);
     }
 }   
+
