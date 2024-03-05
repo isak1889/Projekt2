@@ -36,13 +36,7 @@ function add_to_cart(namn, pris){
     
     span.textContent = total_pris.toFixed(2);
     
-    // Skapa variabel total_pris=0
-    // FÖR i till storlek fält
-    //total_pris = total_pris + fält[i].pris 
-    // var total_pris=0;
-    // for(let i = 0; i < fält.length; i++){
-    //     total_pris = total_pris + fält[i].pris
-    // }
+
 
 }
 
@@ -64,10 +58,7 @@ function remove_from_cart(li) {
         json = JSON.stringify(fält);
         window.localStorage.setItem("product", json);
 
-        //for(let i = 0; i < fält.length; i++){
-        //    total_pris -= fält[i].pris
-       // }
-       // span.textContent = total_pris.toFixed(2);
+
     }
 
 }   
