@@ -1,5 +1,8 @@
 const ul = document.querySelector("#cart-items");
+const span = document.querySelector("#total");
 
+let count = 0;
+let total_pris = 0;
 
 function add_to_cart(namn, pris){
     console.log("namn: " + namn + "\npris: " + pris)
@@ -14,6 +17,8 @@ function add_to_cart(namn, pris){
     ul.appendChild(li);
     count++;
 
+    total_pris += pris;
+
     let fält=[];
     let json = window.localStorage.getItem("product");
     if (json){
@@ -27,15 +32,28 @@ function add_to_cart(namn, pris){
     fält.push(obj);
     json = JSON.stringify(fält);
     window.localStorage.setItem("product",json);
+
     
+    span.textContent = total_pris.toFixed(2);
+    
+    // Skapa variabel total_pris=0
+    // FÖR i till storlek fält
+    //total_pris = total_pris + fält[i].pris 
+    // var total_pris=0;
+    // for(let i = 0; i < fält.length; i++){
+    //     total_pris = total_pris + fält[i].pris
+    // }
+
 }
 
 function remove_from_cart(li) {
     if (li && li.parentNode === ul) {
         ul.removeChild(li);
-
+        
+        total_pris -= pris;
         let fält = [];
         let json = window.localStorage.getItem("product");
+        span.textContent = total_pris.toFixed(2);
         if (json) {
             fält = JSON.parse(json)
         }
@@ -45,6 +63,13 @@ function remove_from_cart(li) {
         fält.splice(index, 1); 
         json = JSON.stringify(fält);
         window.localStorage.setItem("product", json);
+
+        //for(let i = 0; i < fält.length; i++){
+        //    total_pris -= fält[i].pris
+       // }
+       // span.textContent = total_pris.toFixed(2);
     }
+
 }   
+
 
