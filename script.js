@@ -3,14 +3,34 @@ const span = document.querySelector("#total");
 
 let count = 0;
 let total_pris = 0;
+let cartItems = loadCartFromStorage(); 
 
 
+function loadCartFromStorage() {
+    let storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+}
 
-function add_to_cart(namn, pris){
-    console.log("namn: " + namn + "\npris: " + pris)
+function saveCartToStorage() {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+}
+
+
+cartItems.forEach(function(item) {
+    add_to_cart(item.namn, item.pris, false); 
+});
+
+function isProductInCart(namn, pris) {
+    return cartItems.some(function(item) {
+        return item.namn === namn && item.pris === pris;
+    });
+}
+
+function add_to_cart(namn, pris, saveToStorage = true) {
+    console.log("namn: " + namn + "\npris: " + pris);
     let li = document.createElement("li");
-    li.textContent= namn + " Pris: " + pris + "kr";
-    let removeBtn = document.createElement("button");   
+    li.textContent = namn + " Pris: " + pris + "kr";
+    let removeBtn = document.createElement("button");
     removeBtn.textContent = "Ta bort";
     removeBtn.addEventListener("click", function() {
         remove_from_cart(li, pris);
@@ -20,57 +40,32 @@ function add_to_cart(namn, pris){
     count++;
 
     total_pris += pris;
+    updateTotalPrice(); 
 
-    let fält=[];
-    let json = window.localStorage.getItem("product");
-    if (json){
-        fält = JSON.parse(json)
-    }
+    cartItems.push({ namn: namn, pris: pris });
 
-    let obj = {
-        namn: namn,
-        pris: pris,
+    if (saveToStorage) {
+        saveCartToStorage(); 
     }
-    fält.push(obj);
-    json = JSON.stringify(fält);
-    window.localStorage.setItem("product",json);
-    localStorage.setItem("fält", JSON.stringify(fält))
-    span.textContent = total_pris.toFixed(2);
-    
-    
 }
+
 
 function remove_from_cart(li, pris) {
     if (li && li.parentNode === ul) {
         ul.removeChild(li);
 
-        total_pris -= pris;
-
-        let fält = [];
-        let json = window.localStorage.getItem("product");
-        span.textContent = total_pris.toFixed(2);
-        if (json) {
-            fält = JSON.parse(json)
-        }
-        
-    }
-    let index = Array.from(ul.children).indexOf(li);
-    if (index >= 0 && index < fält.length) {
-        total_pris-=pris;
-        fält.splice(index, 1); 
-        json = JSON.stringify(fält);
-        window.localStorage.setItem("product", json);
+        total_pris -= pris; 
+        updateTotalPrice(); 
 
         
-
+        cartItems = cartItems.filter(function(item) {
+            return item.pris !== pris;
+        });
+        saveCartToStorage(); 
     }
-    span.textContent = total_pris.toFixed(2);
-    
-    
-
-}  
+}
 
 
-
-
-
+function updateTotalPrice() {
+    span.textContent = total_pris.toFixed(2); 
+}
